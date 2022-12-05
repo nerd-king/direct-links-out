@@ -1,37 +1,51 @@
-# ![logo](https://raw.githubusercontent.com/nokeya/direct-links-out/master/icon.png) Direct links out
+# ![logo](https://raw.githubusercontent.com/nerd-king/direct-links-out/master/icon.png) Direct links out
 Userscript that removes all this "You are leaving our site" and other redirection stuff from links.
+
+## Credit
+
+Original script is located [here](https://github.com/nokeya/direct-links-out). 
+
+## Changes
+
+I simply added more domains to the original list, and cleaned up the userscript to comply with linting.
+
+## What Does It Provide
 
 - Better anonymity
 - Faster surfing
 - Pure JavaScript
 
-__Install (OpenUserJS):__ https://openuserjs.org/scripts/nokeya/Direct_links_out  
-__Install (GreasyFork):__ https://greasyfork.org/ru/scripts/15857-direct-links-out  
-__Install (Github raw):__ https://github.com/nokeya/direct-links-out/raw/master/direct-links-out.user.js
+## Installation
 
-# Currently supported (with subdomains)
-- google (with local versions)
-- yandex (with local versions)
-- youtube.com
-- facebook.com
-- twitter.com
-- vk.com
-- ok.ru
-- soundcloud.com
-- deviantart.com
-- upwork.com
-- joyreactor.cc / joyreactor.com
-- steamcommunity.com
-- 4pda.ru
-- kat.cr(kickass torrents) (with mirrors)
-- addons.mozilla.org
-- pixiv.net
-- tumblr.com
-- danieldefo.ru
-- yaplakal.com
-- picarto.tv
-- taker.im
-- slack.com
-- forumavia.ru
-- instagram.com
-- wikimapia.org
+__Install (Github raw):__ https://github.com/nerd-king/direct-links-out/raw/master/direct-links-out.user.js
+
+## Currently supported (with subdomains)
+
+| Domain | Notes |
+| ----- | ----- |
+| 4pda.ru | - |
+| addons.mozilla.org | - |
+| danieldefo.ru | - |
+| deviantart.com | - |
+| facebook.com | - |
+| forumavia.ru | - |
+| google.com | The original included all domain extensions of Google.  For now that has been removed to comply with deprecated @include until I put a list together of all of the domain post-fixes for google |
+| instagram.com | - |
+| joyreactor.cc / joyreactor.com | - |
+| kat.cr (kickass torrents) | Includes Mirrors |
+| mcpedl.com | **NEW** |
+| ok.ru | - |
+| picarto.tv | - |
+| pixiv.net | - |
+| slack.com | - |
+| soundcloud.com | - |
+| steamcommunity.com | - |
+| taker.im | - |
+| tumblr.com | - |
+| twitter.com | - |
+| upwork.com | - |
+| vk.com | - |
+| wikimapia.org | - |
+| yandex | Supports known domain extensions |
+| yaplakal.com | - |
+| youtube.com | - |

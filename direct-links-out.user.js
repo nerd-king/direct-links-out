@@ -3,17 +3,13 @@
 // @name:ru     Прямые ссылки наружу
 // @description Removes all "You are leaving our site" and redirection stuff from links
 // @description:ru Убирает "Бла-бла-бла, Вы покидаете наш сайт" и переадресации из ссылок
-// @namespace   https://github.com/nokeya
-// @author      nokeya
-// @update      https://github.com/nokeya/direct-links-out/raw/master/direct-links-out.user.js
-// @icon        https://raw.githubusercontent.com/nokeya/direct-links-out/master/icon.png
-// @version     2.19
+// @namespace   https://github.com/nerd-king
+// @author      nokeya / Updated by nerd-king
+// @icon        https://raw.githubusercontent.com/nerd-king/direct-links-out/master/icon.png
+// @updateURL   https://raw.githubusercontent.com/nerd-king/direct-links-out/master/direct-links-out.user.js
+// @version     3.00
 // @grant       none
-//google
-// @include     *://google.*
-// @include     *://www.google.*
-// @include     *://encrypted.google.*
-//yandex
+// @match       *://*.google.com
 // @match       *://yandex.ru/*
 // @match       *://yandex.ua/*
 // @match       *://yandex.by/*
@@ -26,40 +22,29 @@
 // @match       *://*.yandex.kz/*
 // @match       *://*.yandex.com.tr/*
 // @match       *://*.yandex.com/*
-//youtube
 // @match       *://youtube.com/*
 // @match       *://*.youtube.com/*
-//wikimapia
 // @match       *://wikimapia.org/*
-//deviantart
 // @match       *://deviantart.com/*
 // @match       *://*.deviantart.com/*
-//joyreactor
 // @match       *://joyreactor.cc/*
 // @match       *://*.joyreactor.cc/*
 // @match       *://reactor.cc/*
 // @match       *://*.reactor.cc/*
 // @match       *://joyreactor.com/*
 // @match       *://*.joyreactor.com/*
-//vk
 // @match       *://vk.com/*
 // @match       *://*.vk.com/*
-//ok
 // @match       *://ok.ru/*
 // @match       *://*.ok.ru/*
-//steam
 // @match       *://steamcommunity.com/*
 // @match       *://*.steamcommunity.com/*
-//fb
 // @match       *://facebook.com/*
 // @match       *://*.facebook.com/*
-//twitter
 // @match       *://twitter.com/*
 // @match       *://*.twitter.com/*
-//4pda
 // @match       *://4pda.ru/*
 // @match       *://*.4pda.ru/*
-//kickass
 // @match       *://kat.cr/*
 // @match       *://kickassto.co/*
 // @match       *://katproxy.is/*
@@ -68,39 +53,28 @@
 // @match       *://*.kickassto.co/*
 // @match       *://*.katproxy.is/*
 // @match       *://*.thekat.tv/*
-//AMO
 // @match       *://addons.mozilla.org/*
-//pixiv
 // @match       *://pixiv.net/*
 // @match       *://*.pixiv.net/*
-//tumblr
 // @match       *://tumblr.com/*
 // @match       *://*.tumblr.com/*
-//danieldefo
 // @match       *://danieldefo.ru/*
 // @match       *://*.danieldefo.ru/*
-//yaplakal
 // @match       *://yaplakal.com/*
 // @match       *://*.yaplakal.com/*
-//soundcloud
 // @match       *://soundcloud.com/*
 // @match       *://*.soundcloud.com/*
-//upwork
 // @match       *://upwork.com/*
 // @match       *://*.upwork.com/*
-//picarto
 // @match       *://picarto.tv/*
 // @match       *://*.picarto.tv/*
-//taker
 // @match       *://taker.im/*
 // @match       *://*.taker.im/*
-//forumavia
 // @match       *://*.forumavia.ru/*
-//slack
 // @match       *://*.slack.com/*
-//instagram
 // @match       *://instagram.com/*
 // @match       *://*.instagram.com/*
+// @match       *://*.mcpedl.com/*
 
 // ==/UserScript==
 (function() {
@@ -115,11 +89,11 @@
     function rwSimple(link){
         if (anchor){
             var ndx = link.href.indexOf(anchor);
-            if (ndx != -1){
+            if (ndx !== -1){
                 var newlink = link.href.substring(ndx + anchor.length);
                 if (after){
                     ndx = newlink.indexOf(after);
-                    if (ndx != -1)
+                    if (ndx !== -1)
                         newlink = newlink.substring(0, ndx);
                 }
                 link.href = unescape(newlink);
@@ -143,12 +117,12 @@
         }
 
         var ndx = link.href.indexOf(anchor);
-        if (ndx != -1){
+        if (ndx !== -1){
             var newlink = link.href.substring(ndx + anchor.length);
             var afterArr = ['&post=', '&el=snippet', '&cc_key='];
             for (var i = 0; i < afterArr.length; ++i){
                 ndx = newlink.indexOf(afterArr[i]);
-                if (ndx != -1)
+                if (ndx !== -1)
                     newlink = newlink.substring(0, ndx);
             }
             link.href = unescape(newlink);
@@ -169,7 +143,7 @@
     // kickass
     function rwKickass(link){
         var ndx = link.href.indexOf(anchor);
-        if (ndx != -1){
+        if (ndx !== -1){
             link.href = window.atob(unescape(link.href.substring(ndx + anchor.length, link.href.length - 1)));
             link.className = '';
         }
@@ -191,7 +165,7 @@
     // google
     function rwGoogle(link){
         // replace global rwt script
-        if (window.rwt && window.rwt != retTrue){
+        if (window.rwt && window.rwt !== retTrue){
             delete window.rwt;
             Object.defineProperty(window, 'rwt', { value: retTrue, writable: false });
         }
@@ -316,6 +290,9 @@
             anchor = "phpBB2/goto/";
         else if (/slack/i.test(loc))
             rwLink = rwSlack;
+        else if (/mcpedl/i.test(loc)){
+            anchor = '/leaving/?url='
+        }
 
         document.addEventListener('DOMNodeInserted', function(event){
             if (!event || !event.target || !(event.target instanceof HTMLElement))

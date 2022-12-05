@@ -6,6 +6,7 @@
 // @namespace   https://github.com/nerd-king
 // @author      nokeya / Updated by nerd-king
 // @icon        https://raw.githubusercontent.com/nerd-king/direct-links-out/master/icon.png
+// @downloadURL https://raw.githubusercontent.com/nerd-king/direct-links-out/master/direct-links-out.user.js
 // @updateURL   https://raw.githubusercontent.com/nerd-king/direct-links-out/master/direct-links-out.user.js
 // @version     3.00
 // @grant       none
